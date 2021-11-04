@@ -17,8 +17,16 @@ const deleteTask = async (req, res) => {
   return res.status(status).send();
 };
 
+const upDateTask = async (req, res) => {
+  const { id } = req.params;
+  const data = req.body;
+  const {status} = await taskService.upDateTask(id, data);
+  return res.status(status).send();
+};
+
 module.exports = {
   insertTask,
   getTasks,
   deleteTask,
+  upDateTask,
 };

@@ -15,8 +15,14 @@ const deleteTask = async (id) => {
   return { status: 209 };
 };
 
+const upDateTask = async (id, data) => {
+  await taskModel.upDateTask(id, data);
+  return { status: 207 };
+};
+
 module.exports = {
   insertTask,
   getTasks,
   deleteTask,
+  upDateTask,
 }

@@ -18,8 +18,14 @@ const deleteTask = async (id) => {
   await db.collection('tasks').deleteOne({ _id: ObjectID(id) });
 };
 
+const upDateTask = async (id, data) => {
+  const db = await connection();
+  await db.collection('tasks').updateOne({ _id: ObjectID(id) }, { $set: data });
+};
+
 module.exports = {
   getTasks,
   insertTask,
   deleteTask,
+  upDateTask,
 };
