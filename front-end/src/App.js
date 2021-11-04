@@ -1,9 +1,10 @@
 import './App.css';
+import Tasks from './pages/Tasks';
 
 function App() {
   return (
     <div>
-      oi
+      <Tasks />
     </div>
   );
 }
