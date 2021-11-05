@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 function TaskList({setId}) {
   const [taskList, setTaskList] = useState([]);
+  const [orderBy, setOrderBy] = useState('description');
 
   async function getList() {
     const listing = await fetch('http://localhost:5000/tasks', {
@@ -22,6 +23,19 @@ function TaskList({setId}) {
     });
     window.location.reload();
   };
+
+  function orderList() {
+    taskList.sort((a, b) => {
+      if (a[orderBy] < b[orderBy]) {
+        return -1;
+      }
+      if (a[orderBy] > b[orderBy]) {
+        return 1;
+      }
+      return 0;
+    });
+    setTaskList([...taskList]);
+  }
   
   useEffect(() => {
     getList();
@@ -29,6 +43,12 @@ function TaskList({setId}) {
 
   return (
     <div>
+      <select onChange={ (e) => setOrderBy(e.target.value) }>
+        <option value="description">Descrição</option>
+        <option value="createdAt">Data de criação</option>
+        <option value="status">Estatus</option>
+      </select>
+      <button onClick={ orderList }>Ordenar</button>
       <ul>
         {taskList.map((t) => {
           return (
