@@ -12,7 +12,6 @@ function Tasks() {
         ? <Form id={id} />
         : <Form />
       }
-      {/* <Form id={ id } /> */}
       <TaskList setId={setId} />
     </div>
   )
